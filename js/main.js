@@ -60,6 +60,13 @@ function clearSignUpform() {
 
 // L O G I N
 
+var pathparts = location.pathname.split('/');
+var baseURL = ''
+for (var i = 0; i < pathparts.length - 1; i++) {
+    baseURL += '/' + pathparts[i]
+}
+
+
 loginBtn.addEventListener('click', function (e) {
     e.preventDefault();
 
@@ -70,7 +77,7 @@ loginBtn.addEventListener('click', function (e) {
 
     if (Exist() == true) {
 
-        window.location.href = "../home.html";
+        location.assign(baseURL + '/home.html')
 
     } else {
         incorrect.innerHTML = '<span class="error">incorrect email or password</span>';
