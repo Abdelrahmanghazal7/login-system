@@ -8,5 +8,5 @@ if (username) {
 
 logOut.addEventListener('click', function () {
     localStorage.removeItem('sessionUsername');
-    location.replace("../index.html");
+    window.location.assign('index.html');
 })
