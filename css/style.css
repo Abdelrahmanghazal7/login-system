@@ -111,3 +111,9 @@ button:hover {
 .success {
 	color: rgb(0, 168, 0);
 }
+
+a {
+	text-decoration: none;
+	color: #000;
+	font-weight: bolder;
+}
