@@ -11,15 +11,50 @@
 
 <body>
 
+    <header>
+        <div id="toggle">
+            <span>
+                Menu
+            </span>
+        </div>
+        <div id="menu">
+            <ul class="unstyled-list">
+                <a href="#popup1">
+                    <li>
+                        <span class="book"></span>
+                        Change Password
+                    </li>
+                </a>
+                <span class="line"></span>
+
+                <a href="#popup2">
+                    <li>
+                        <span class="movies"></span>
+                        Change Name
+                    </li>
+                </a>
+                <span class="line"></span>
+
+                <a href="#popup3">
+                    <li>
+                        <span class="computer"></span>
+                        Delete Account
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </header>
+
     <div class="main">
         <input type="checkbox" id="check" aria-hidden="true">
 
         <div class="signup">
             <form>
                 <label for="check" aria-hidden="true">Sign up</label>
-                <input id="signUpName" type="text" name="text" placeholder="User name" autocomplete="username" required>
+                <input id="signUpName" type="text" name="txt" placeholder="User name" autocomplete="name" required>
                 <input id="signUpEmail" type="email" name="email" placeholder="Email" autocomplete="email" required>
-                <input id="signUpPassword" type="password" name="password" placeholder="Password" autocomplete="new-password" required>
+                <input id="signUpPassword" type="password" name="password" placeholder="Password"
+                    autocomplete="new-password" required>
                 <p id="exist"></p>
 
                 <button id="SignUpBtn">Sign up</button>
@@ -30,17 +65,73 @@
             <form>
                 <label for="check" aria-hidden="true">Login</label>
                 <input id="signInEmail" type="email" name="email" placeholder="Email" autocomplete="email" required>
-                <input id="signInPassword" type="password" name="password" placeholder="Password" autocomplete="current-password" required>
+                <input id="signInPassword" type="password" name="password" placeholder="Password"
+                    autocomplete="current-password" required>
                 <p id="incorrect"></p>
 
                 <button id="loginBtn">Login</button>
-
-                <a href="#" id="changePassword" onclick='changePassword()'>Change Password</a>
 
             </form>
         </div>
     </div>
 
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <h2>New Password</h2>
+            <p id="passwordError"></p>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <input id="existPasswordEmail" type="email" name="email" placeholder="Enter Your Email"
+                    autocomplete="email" required>
+                <input id="newPassword" type="password" name="password" placeholder="Enter Your New Password"
+                    autocomplete="new-password" required>
+
+                <button onclick='changePassword()'>Change</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup2" class="overlay">
+        <div class="popup">
+            <h2>New Name</h2>
+            <p id="nameError"></p>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <input id="existNameEmail" type="email" name="email" placeholder="Enter Your Email" autocomplete="email"
+                    required>
+                <input id="newName" type="text" name="name" placeholder="Enter Your New Name" autocomplete="name"
+                    required>
+
+                <button onclick='changeName()'>Change</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="popup3" class="overlay">
+        <div class="popup">
+            <h2>Delete Account</h2>
+            <p id="emailError"></p>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <input id="existdeletEmail" type="email" name="email" placeholder="Enter Your Email"
+                    autocomplete="email" required>
+
+                <button onclick='deleteAccount()'>Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <img src="./check.png" class="check" alt="">
+            <div class="message">
+                <span class="text text-1">Success</span>
+                <span class="text text-2" id="toastMessage"></span>
+            </div>
+        </div>
+        <div class="progress active"></div>
+    </div>
+    
 
     <script src="./js/main.js"></script>
 </body>
