@@ -302,109 +302,16 @@ div#menu ul li i {
 	text-align: center;
 }
 
-.toast {
-	position: absolute;
-	top: 25px;
-	right: 10px;
-	border-radius: 12px;
-	background: #cef3ce;
-	padding: 20px 35px 20px 25px;
-	box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
-	overflow: hidden;
-	transform: translateX(110%);
-	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
-}
-
-.toast.active {
-	transform: translateX(0%);
-}
-
-.toast .toast-content {
-	display: flex;
-	align-items: center;
-}
-
-.toast-content .check {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 30px;
-	min-width: 30px;
-	padding: 5px;
-	background-color: green;
-	color: #fff;
-	font-size: 20px;
-	border-radius: 50%;
-}
-
-.toast-content .message {
-	display: flex;
-	flex-direction: column;
-	margin: 0 20px;
-}
-
-.message .text {
-	font-size: 16px;
-	font-weight: 400;
-	color: #000;
-}
-
-.message .text.text-1 {
-	font-weight: 600;
-	color: green;
-}
-
-.toast .progress {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	height: 5px;
-	width: 100%;
-
-}
-
-.toast .progress:before {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	height: 100%;
-	width: 100%;
-	background-color: green;
-}
-
-.progress.active:before {
-	animation: progress 5s linear forwards;
-}
-
-@keyframes progress {
-	100% {
-		right: 100%;
-	}
-}
-
 @media screen and (max-width: 700px) {
-
-	.box {
-		width: 70%;
-	}
-
-	.popup {
-		width: 70%;
-	}
-
-	.toast {
-		top: 55px;
-	}
-
-	.message .text {
-		font-size: 15px;
-	}
 
 	.overlay {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.popup {
+		width: 70%;
 	}
 
 	.open {
