@@ -101,8 +101,9 @@ function changePassword() {
     if (foundUser) {
         foundUser.password = newPassword;
         localStorage.setItem('users', JSON.stringify(signUpArray));
-        showToast('Password changed successfully, ' + foundUser.name + '!');
+        showToast();
         document.getElementById('passwordError').innerHTML = '';
+        document.getElementById('passwordSuccess').innerHTML = `<span class="success">Password changed successfully, ${foundUser.name}!</span>`;
     } else {
         document.getElementById('passwordError').innerHTML = '<span class="error">User not found .. Please sign up first or provide a valid email</span>';
     }
@@ -118,8 +119,8 @@ function changeName() {
     if (foundUser) {
         foundUser.name = newName;
         localStorage.setItem('users', JSON.stringify(signUpArray));
-        showToast('Name changed successfully!');
         document.getElementById('nameError').innerHTML = '';
+        document.getElementById('nameSuccess').innerHTML = '<span class="success">Name changed successfully!</span>';
     } else {
         document.getElementById('nameError').innerHTML = '<span class="error">User not found .. Please sign up first or provide a valid email</span>';
     }
@@ -136,8 +137,9 @@ function deleteAccount() {
         var index = signUpArray.indexOf(userToDelete);
         signUpArray.splice(index, 1);
         localStorage.setItem('users', JSON.stringify(signUpArray));
-        showToast('Account deleted successfully!');
         document.getElementById('emailError').innerHTML = '';
+        document.getElementById('emailSuccess').innerHTML = '<span class="success">Account deleted successfully!</span>';
+
     } else {
         document.getElementById('emailError').innerHTML = '<span class="error">User not found .. Please provide a valid email</span>';
     }
@@ -164,17 +166,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-// S U C C E S S   M E S S A G E
-
-function showToast(message) {
-    var toast = document.getElementById('toast');
-    var toastMessage = document.getElementById('toastMessage');
-
-    toastMessage.innerText = message;
-    toast.classList.add('active');
-
-    setTimeout(function () {
-        toast.classList.remove('active');
-    }, 3000);
-}
