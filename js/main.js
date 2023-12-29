@@ -90,3 +90,19 @@ function Exist() {
     }
     return false;
 }
+
+// F O R G E T   P A S S W O R D
+
+function changePassword() {
+    var existEmail = window.prompt('Please Enter Your Email');
+    var newPassword = window.prompt('Please Enter Your New Password');
+
+    var foundUser = signUpArray.find(user => user.email.toLowerCase() === existEmail.toLowerCase());
+    if (foundUser) {
+        foundUser.password = newPassword;
+        localStorage.setItem('users', JSON.stringify(signUpArray));
+        alert('Password changed successfully!');
+    } else {
+        alert('User not found .. Please sign up first or provide a valid email');
+    }
+}
