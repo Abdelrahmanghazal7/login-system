@@ -7,6 +7,8 @@ var signInPassword = document.getElementById('signInPassword');
 var loginBtn = document.getElementById('loginBtn');
 var exist = document.getElementById('exist');
 var incorrect = document.getElementById('incorrect');
+var header = document.querySelector('header');
+var hidePopup = document.querySelectorAll('.hide');
 var signUpArray;
 
 if (localStorage.getItem('users') == null) {
@@ -94,16 +96,20 @@ function Exist() {
 //  C H A N G E   P A S S W O R D 
 
 function changePassword() {
+
     var existPasswordEmail = document.getElementById('existPasswordEmail').value;
+
     var newPassword = document.getElementById('newPassword').value;
 
     var foundUser = signUpArray.find(user => user.email.toLowerCase() === existPasswordEmail.toLowerCase());
+
     if (foundUser) {
+
         foundUser.password = newPassword;
         localStorage.setItem('users', JSON.stringify(signUpArray));
-        showToast();
-        document.getElementById('passwordError').innerHTML = '';
-        document.getElementById('passwordSuccess').innerHTML = `<span class="success">Password changed successfully, ${foundUser.name}!</span>`;
+
+        showToast(`Password Changed Successfully <span class="founduser">${foundUser.name}</span>`, "success", 5000);
+        clearPopupInputs()
     } else {
         document.getElementById('passwordError').innerHTML = '<span class="error">User not found .. Please sign up first or provide a valid email</span>';
     }
@@ -120,7 +126,9 @@ function changeName() {
         foundUser.name = newName;
         localStorage.setItem('users', JSON.stringify(signUpArray));
         document.getElementById('nameError').innerHTML = '';
-        document.getElementById('nameSuccess').innerHTML = '<span class="success">Name changed successfully!</span>';
+
+        showToast(`Name Changed Successfully <span class="founduser">${foundUser.name}</span>`, "success", 5000);
+        clearPopupInputs()
     } else {
         document.getElementById('nameError').innerHTML = '<span class="error">User not found .. Please sign up first or provide a valid email</span>';
     }
@@ -138,7 +146,9 @@ function deleteAccount() {
         signUpArray.splice(index, 1);
         localStorage.setItem('users', JSON.stringify(signUpArray));
         document.getElementById('emailError').innerHTML = '';
-        document.getElementById('emailSuccess').innerHTML = '<span class="success">Account deleted successfully!</span>';
+
+        showToast("Account Deleted Successfully", "success", 5000);
+        clearPopupInputs()
 
     } else {
         document.getElementById('emailError').innerHTML = '<span class="error">User not found .. Please provide a valid email</span>';
@@ -149,7 +159,6 @@ function deleteAccount() {
 
 document.addEventListener('DOMContentLoaded', function () {
     var toggleButton = document.getElementById('toggle');
-    var header = document.querySelector('header');
 
     // Toggle menu on button click
     toggleButton.addEventListener('click', function () {
@@ -166,3 +175,62 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// H I D E   P O P U P
+
+for (let i = 0; i < hidePopup.length; i++) {
+    hidePopup[i].addEventListener('click', function () {
+        header.classList.remove('open');
+        document.getElementById('passwordError').innerHTML = '';
+        document.getElementById('nameError').innerHTML = '';
+        document.getElementById('emailError').innerHTML = '';
+    })
+}
+
+// T O A S T
+
+let icon = { success: '<span class="material-symbols-outlined"><img class="check" src="./check.png" alt="check"></span>' };
+
+const showToast = (
+    message = "Sample Message",
+    toastType = "info",
+    duration = 5000) => {
+    if (
+        !Object.keys(icon).includes(toastType))
+        toastType = "info";
+
+    let box = document.createElement("div");
+    box.classList.add(
+        "toast", `toast-${toastType}`);
+    box.innerHTML = ` <div class="toast-content-wrapper"> 
+                      <div class="toast-icon"> 
+                      ${icon[toastType]}
+                      </div> 
+                      <div class="toast-message">
+                      ${message}
+                      </div> 
+                      <div class="toast-progress"></div> 
+                      </div>`;
+    duration = duration || 5000;
+    box.querySelector(".toast-progress").style.animationDuration =
+        `${duration / 1000}s`;
+
+    let toastAlready =
+        document.body.querySelector(".toast");
+    if (toastAlready) {
+        toastAlready.remove();
+    }
+
+    document.body.appendChild(box)
+};
+
+function clearPopupInputs() {
+    document.getElementById('existPasswordEmail').value = '';
+    document.getElementById('newPassword').value = '';
+    document.getElementById('existNameEmail').value = '';
+    document.getElementById('newName').value = '';
+    document.getElementById('existdeletEmail').value = '';
+    document.getElementById('passwordError').innerHTML = '';
+    document.getElementById('nameError').innerHTML = '';
+    document.getElementById('emailError').innerHTML = '';
+}
