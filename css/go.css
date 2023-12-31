@@ -1,0 +1,171 @@
+.splash {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  display: flex;
+  overflow: hidden;
+  z-index: -9999999;
+}
+
+.splash_logo {
+  position: absolute;
+  margin: -15px 0 0 -25px;
+  top: 50vh;
+  z-index: 5;
+  left: 50vw;
+  width: 50px;
+  text-align: center;
+  height: 30px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #000;
+  opacity: 1;
+  will-change: opacity;
+  animation: logo .3s ease-in 1.5s forwards, off .6s ease-in-out 3.2s forwards;
+}
+
+.splash_logo:before {
+  display: block;
+  position: absolute;
+  left: 15px;
+  bottom: -25px;
+  width: 30px;
+  height: 3px;
+  background-color: #000;
+  content: "";
+}
+
+.splash_logo:after {
+  display: block;
+  position: absolute;
+  left: 15px;
+  top: -15px;
+  width: 30px;
+  height: 3px;
+  background-color: #000;
+  content: "";
+  will-change: width;
+}
+
+.splash_svg {
+  position: relative;
+  margin: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  right: 0;
+
+}
+
+.splash_svg svg {
+  width: 100%;
+  height: 100%;
+  backface-visibility: visible;
+}
+
+.splash_svg svg rect {
+  width: 100%;
+  height: 100%;
+  fill: #5200f5;
+  stroke: 0;
+  -webkit-clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+  clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+  animation: expand .7s ease-in forwards 2.7s;
+  transition: .7s all;
+}
+
+.splash_minimize {
+  position: absolute;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.splash_minimize svg {
+  width: 100%;
+  height: 100%;
+  backface-visibility: visible;
+}
+
+.splash_minimize svg rect {
+  width: 100%;
+  height: 100%;
+  -webkit-clip-path: polygon(0vw 0vh, 100vw 0vh, 100vw 100vh, 0vw 100vh);
+  clip-path: polygon(0vw 0vh, 100vw 0vh, 100vw 100vh, 0vw 100vh);
+  animation: scale .2s ease-out forwards 1s, hide 1.3s ease-out forwards 1.2s;
+}
+
+@keyframes scale {
+  100% {
+    -webkit-clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+    clip-path: polygon(45vw 40vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+  }
+}
+
+@keyframes hide {
+  100% {
+    fill: transparent;
+  }
+}
+
+@keyframes off {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes on {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes logo {
+  100% {
+    color: #000;
+  }
+}
+
+@keyframes expand {
+  25% {
+    -webkit-clip-path: polygon(0vw 0vh, 55vw 40vh, 55vw 58vh, 45vw 58vh);
+    clip-path: polygon(0vw 0vh, 55vw 40vh, 55vw 60vh, 45vw 60vh);
+    fill: black;
+  }
+
+  50% {
+    -webkit-clip-path: polygon(0vw 0vh, 100vw 0vh, 55vw 60vh, 45vw 60vh);
+    clip-path: polygon(0vw 0vh, 100vw 0vh, 55vw 60vh, 45vw 60vh);
+    fill: #3100f55f;
+  }
+
+  75% {
+    -webkit-clip-path: polygon(0vw 0vh, 100vw 0vh, 55vw 60vh, 0vw 100vh);
+    clip-path: polygon(0vw 0vh, 100vw 0vh, 55vw 60vh, 0vw 100vh);
+    fill: rgb(126, 126, 126);
+  }
+
+  99% {
+    -webkit-clip-path: polygon(0vw 0vh, 100vw 0vh, 100vw 100vh, 0vw 100vh);
+    clip-path: polygon(0vw 0vh, 100vw 0vh, 100vw 100vh, 0vw 100vh);
+    fill: #4500f5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .splash_svg svg rect {
+    -webkit-clip-path: polygon(30% 35%, 70% 35%, 70% 65%, 30% 65%);
+    clip-path: polygon(30% 35%, 70% 35%, 70% 65%, 30% 65%);
+  }
+}
