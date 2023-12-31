@@ -65,6 +65,8 @@ function clearSignUpform() {
 loginBtn.addEventListener('click', function (e) {
     e.preventDefault();
 
+    incorrect.innerHTML = '';
+
     if (signInPassword.value == "" || signInEmail.value == "") {
         incorrect.innerHTML = '<span class="error">All inputs is required</span>';
         return false;
@@ -72,6 +74,9 @@ loginBtn.addEventListener('click', function (e) {
 
     if (Exist() == true) {
 
+        signInEmail.value = '';
+        signInPassword.value = '';
+        
         window.location.assign('home.html');
 
     } else {
