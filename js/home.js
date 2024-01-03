@@ -1,9 +1,9 @@
 var logOut = document.getElementById('logOut');
 var userName = document.getElementById('userName');
-var username = localStorage.getItem('sessionUsername');
+var sessionUser = localStorage.getItem('sessionUsername');
 
-if (username) {
-    userName.innerHTML = `<span class="anim-bg">${username}</span>`;
+if (sessionUser) {
+    userName.innerHTML = `<span class="anim-bg">${sessionUser}</span>`;
 }
 
 logOut.addEventListener('click', function () {
