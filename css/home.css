@@ -401,7 +401,7 @@ p {
 }
 
 .fade {
-  animation: fadeIn 4s forwards;
+  animation: fadeIn 4.2s forwards;
 }
 
 @keyframes fadeIn {
