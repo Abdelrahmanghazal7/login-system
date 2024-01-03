@@ -139,6 +139,12 @@ function changePassword() {
     const existPasswordEmail = document.getElementById('existPasswordEmail').value;
     const newPassword = document.getElementById('newPassword').value;
 
+       // Validate if the new password has at least 6 characters
+     if (newPassword.trim().length < 6) {
+        document.getElementById('passwordError').innerHTML = '<span class="error">Password must have at least 6 characters</span>';
+        return;
+    }
+    
     const foundUser = signUpArray.find(user => user.email.toLowerCase() === existPasswordEmail.toLowerCase());
 
     if (foundUser) {
@@ -220,16 +226,23 @@ hidePopup.forEach(element => {
 });
 
 // T O A S T
-const icon = { success: '<span class="material-symbols-outlined"><img class="check" src="./check.png" alt="check"></span>' };
 
-function showToast({ message = "Sample Message", toastType = "info", duration = 5000, icon: customIcon }) {
-    if (!Object.keys(icon).includes(toastType)) toastType = "info";
+let icon = { success: '<span class="material-symbols-outlined"><img class="check" src="./check.png" alt="check"></span>' };
 
-    const box = document.createElement("div");
-    box.classList.add("toast", `toast-${toastType}`);
-    box.innerHTML = `<div class="toast-content-wrapper"> 
+const showToast = (
+    message = "Sample Message",
+    toastType = "info",
+    duration = 5000) => {
+    if (
+        !Object.keys(icon).includes(toastType))
+        toastType = "info";
+
+    let box = document.createElement("div");
+    box.classList.add(
+        "toast", `toast-${toastType}`);
+    box.innerHTML = ` <div class="toast-content-wrapper"> 
                       <div class="toast-icon"> 
-                      ${customIcon || icon[toastType]}
+                      ${icon[toastType]}
                       </div> 
                       <div class="toast-message">
                       ${message}
@@ -237,15 +250,17 @@ function showToast({ message = "Sample Message", toastType = "info", duration = 
                       <div class="toast-progress"></div> 
                       </div>`;
     duration = duration || 5000;
-    box.querySelector(".toast-progress").style.animationDuration = `${duration / 1000}s`;
+    box.querySelector(".toast-progress").style.animationDuration =
+        `${duration / 1000}s`;
 
-    const toastAlready = document.body.querySelector(".toast");
+    let toastAlready =
+        document.body.querySelector(".toast");
     if (toastAlready) {
         toastAlready.remove();
     }
 
-    document.body.appendChild(box);
-}
+    document.body.appendChild(box)
+};
 
 function clearPopupInputs() {
     document.getElementById('existPasswordEmail').value = '';
